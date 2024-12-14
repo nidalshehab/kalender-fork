@@ -70,9 +70,11 @@ class MonthBody<T extends Object?> extends StatelessWidget {
       'The CalendarController\'s $ViewController<$T> needs to be a $MonthViewController<$T>',
     );
 
-    final viewController = calendarController!.viewController as MonthViewController<T>;
+    final viewController =
+        calendarController!.viewController as MonthViewController<T>;
     final viewConfiguration = viewController.viewConfiguration;
-    final bodyConfiguration = this.configuration ?? MultiDayHeaderConfiguration();
+    final bodyConfiguration =
+        this.configuration ?? MultiDayHeaderConfiguration();
     final pageNavigation = viewConfiguration.pageNavigationFunctions;
     final pageTriggerConfiguration = bodyConfiguration.pageTriggerConfiguration;
     final tileHeight = bodyConfiguration.tileHeight;
@@ -93,8 +95,10 @@ class MonthBody<T extends Object?> extends StatelessWidget {
         final pageView = PageView.builder(
           controller: viewController.pageController,
           itemCount: pageNavigation.numberOfPages,
+          scrollDirection: Axis.vertical,
           onPageChanged: (index) {
-            final visibleRange = pageNavigation.dateTimeRangeFromIndex(index).asLocal;
+            final visibleRange =
+                pageNavigation.dateTimeRangeFromIndex(index).asLocal;
             viewController.visibleDateTimeRange.value = visibleRange;
             callbacks?.onPageChanged?.call(visibleRange);
           },
@@ -167,7 +171,8 @@ class MonthBody<T extends Object?> extends StatelessWidget {
                             children: [
                               Positioned.fill(child: draggable),
                               ConstrainedBox(
-                                constraints: BoxConstraints(minHeight: weekHeight - 32),
+                                constraints:
+                                    BoxConstraints(minHeight: weekHeight - 32),
                                 child: multiDayEvents,
                               ),
                               Positioned.fill(child: multiDayDragTarget),
@@ -186,7 +191,8 @@ class MonthBody<T extends Object?> extends StatelessWidget {
         );
 
         final monthGridStyle = styles?.monthGridStyle;
-        final monthGrid = components?.monthGridBuilder?.call(monthGridStyle) ?? MonthGrid(style: monthGridStyle);
+        final monthGrid = components?.monthGridBuilder?.call(monthGridStyle) ??
+            MonthGrid(style: monthGridStyle);
 
         return SizedBox(
           width: pageWidth,

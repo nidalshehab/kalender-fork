@@ -4,12 +4,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kalender/kalender.dart';
-import 'package:web_demo/models/event.dart';
+import './../models/event.dart';
 
 class CalendarZoomDetector extends StatefulWidget {
   final Widget child;
   final CalendarController<Event> controller;
-  const CalendarZoomDetector({super.key, required this.child, required this.controller});
+  const CalendarZoomDetector(
+      {super.key, required this.child, required this.controller});
 
   @override
   State<CalendarZoomDetector> createState() => _CalendarZoomDetectorState();
@@ -57,7 +58,9 @@ class _CalendarZoomDetectorState extends State<CalendarZoomDetector> {
       child: ValueListenableBuilder(
         valueListenable: isCtrlPressed,
         builder: (context, value, _) => ScrollConfiguration(
-          behavior: value ? const ScrollBehaviorNever() : const MaterialScrollBehavior(),
+          behavior: value
+              ? const ScrollBehaviorNever()
+              : const MaterialScrollBehavior(),
           child: widget.child,
         ),
       ),
@@ -69,7 +72,8 @@ class ScrollBehaviorNever extends ScrollBehavior {
   const ScrollBehaviorNever();
 
   @override
-  ScrollPhysics getScrollPhysics(BuildContext context) => const NeverScrollableScrollPhysics();
+  ScrollPhysics getScrollPhysics(BuildContext context) =>
+      const NeverScrollableScrollPhysics();
 }
 
 class ZoomIntent extends Intent {

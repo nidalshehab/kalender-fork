@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kalender/kalender.dart';
-import 'package:web_demo/models/event.dart';
+import './../models/event.dart';
 
 class EventOverlayCard extends StatefulWidget {
   final CalendarEvent<Event> event;
@@ -55,10 +55,13 @@ class _EventOverlayCardState extends State<EventOverlayCard> {
                         child: TextFormField(
                           initialValue: event.data?.title,
                           style: Theme.of(context).textTheme.titleMedium,
-                          decoration: const InputDecoration(border: OutlineInputBorder(), labelText: "Title"),
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(), labelText: "Title"),
                           onChanged: (value) {
-                            final updatedEvent = event.copyWith(data: event.data?.copyWith(title: value));
-                            widget.eventsController.updateEvent(event: event, updatedEvent: updatedEvent);
+                            final updatedEvent = event.copyWith(
+                                data: event.data?.copyWith(title: value));
+                            widget.eventsController.updateEvent(
+                                event: event, updatedEvent: updatedEvent);
                             setState(() => event = updatedEvent);
                           },
                         ),
@@ -78,12 +81,15 @@ class _EventOverlayCardState extends State<EventOverlayCard> {
                 leading: const Icon(Icons.play_arrow),
                 title: TextButton(
                   onPressed: () async {
-                    final date = await _showDatePicker(DateTime(1970), event.end);
+                    final date =
+                        await _showDatePicker(DateTime(1970), event.end);
                     if (date == null) return;
 
                     final newRange = DateTimeRange(start: date, end: event.end);
-                    final updatedEvent = event.copyWith(dateTimeRange: newRange);
-                    widget.eventsController.updateEvent(event: event, updatedEvent: updatedEvent);
+                    final updatedEvent =
+                        event.copyWith(dateTimeRange: newRange);
+                    widget.eventsController
+                        .updateEvent(event: event, updatedEvent: updatedEvent);
                     setState(() => event = updatedEvent);
                   },
                   child: Text(locale.formatShortDate(event.start)),
@@ -92,16 +98,21 @@ class _EventOverlayCardState extends State<EventOverlayCard> {
                   onPressed: () async {
                     final time = await _showTimePicker(event.start);
                     if (time == null) return;
-                    final start = event.start.copyWith(hour: time.hour, minute: time.minute);
+                    final start = event.start
+                        .copyWith(hour: time.hour, minute: time.minute);
                     if (start.isAfter(event.end) || start == event.end) return;
 
-                    final newRange = DateTimeRange(start: start, end: event.end);
-                    final updatedEvent = event.copyWith(dateTimeRange: newRange);
-                    widget.eventsController.updateEvent(event: event, updatedEvent: updatedEvent);
+                    final newRange =
+                        DateTimeRange(start: start, end: event.end);
+                    final updatedEvent =
+                        event.copyWith(dateTimeRange: newRange);
+                    widget.eventsController
+                        .updateEvent(event: event, updatedEvent: updatedEvent);
                     setState(() => event = updatedEvent);
                   },
                   child: Text(
-                    locale.formatTimeOfDay(TimeOfDay.fromDateTime(event.start), alwaysUse24HourFormat: use24),
+                    locale.formatTimeOfDay(TimeOfDay.fromDateTime(event.start),
+                        alwaysUse24HourFormat: use24),
                   ),
                 ),
               ),
@@ -114,9 +125,12 @@ class _EventOverlayCardState extends State<EventOverlayCard> {
                     final date = await _showDatePicker(event.start, last);
                     if (date == null) return;
 
-                    final newRange = DateTimeRange(start: event.start, end: date);
-                    final updatedEvent = event.copyWith(dateTimeRange: newRange);
-                    widget.eventsController.updateEvent(event: event, updatedEvent: updatedEvent);
+                    final newRange =
+                        DateTimeRange(start: event.start, end: date);
+                    final updatedEvent =
+                        event.copyWith(dateTimeRange: newRange);
+                    widget.eventsController
+                        .updateEvent(event: event, updatedEvent: updatedEvent);
                     setState(() => event = updatedEvent);
                   },
                   child: Text(locale.formatShortDate(event.end)),
@@ -125,16 +139,21 @@ class _EventOverlayCardState extends State<EventOverlayCard> {
                   onPressed: () async {
                     final time = await _showTimePicker(event.end);
                     if (time == null) return;
-                    final end = event.end.copyWith(hour: time.hour, minute: time.minute);
+                    final end = event.end
+                        .copyWith(hour: time.hour, minute: time.minute);
                     if (end.isBefore(event.start) || end == event.start) return;
 
-                    final newRange = DateTimeRange(start: event.start, end: end);
-                    final updatedEvent = event.copyWith(dateTimeRange: newRange);
-                    widget.eventsController.updateEvent(event: event, updatedEvent: updatedEvent);
+                    final newRange =
+                        DateTimeRange(start: event.start, end: end);
+                    final updatedEvent =
+                        event.copyWith(dateTimeRange: newRange);
+                    widget.eventsController
+                        .updateEvent(event: event, updatedEvent: updatedEvent);
                     setState(() => event = updatedEvent);
                   },
                   child: Text(
-                    locale.formatTimeOfDay(TimeOfDay.fromDateTime(event.end), alwaysUse24HourFormat: use24),
+                    locale.formatTimeOfDay(TimeOfDay.fromDateTime(event.end),
+                        alwaysUse24HourFormat: use24),
                   ),
                 ),
               ),

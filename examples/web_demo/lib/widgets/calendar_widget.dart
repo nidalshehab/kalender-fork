@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kalender/kalender.dart';
-import 'package:web_demo/models/event.dart';
-import 'package:web_demo/widgets/resize_handle.dart';
-import 'package:web_demo/widgets/zoom.dart';
+import './../models/event.dart';
+import './../widgets/resize_handle.dart';
+import './../widgets/zoom.dart';
 
 class CalendarWidget extends StatelessWidget {
   final CalendarController<Event> controller;
@@ -113,11 +113,15 @@ class CalendarWidget extends StatelessWidget {
                   }).toList(),
                   inputDecorationTheme: InputDecorationTheme(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(kMinInteractiveDimension),
+                      borderRadius:
+                          BorderRadius.circular(kMinInteractiveDimension),
                     ),
                     enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(kMinInteractiveDimension),
-                        borderSide: BorderSide(width: 2, color: Theme.of(context).colorScheme.outline)),
+                        borderRadius:
+                            BorderRadius.circular(kMinInteractiveDimension),
+                        borderSide: BorderSide(
+                            width: 2,
+                            color: Theme.of(context).colorScheme.outline)),
                   ),
                   initialSelection: viewConfiguration,
                   onSelected: (value) {
@@ -192,7 +196,8 @@ class CalendarWidget extends StatelessWidget {
     );
   }
 
-  Widget _feedbackTileBuilder(CalendarEvent<Event> event, Size dropTargetWidgetSize) {
+  Widget _feedbackTileBuilder(
+      CalendarEvent<Event> event, Size dropTargetWidgetSize) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 250),
       width: dropTargetWidgetSize.width * 0.8,
@@ -216,7 +221,8 @@ class CalendarWidget extends StatelessWidget {
   Widget _dropTargetTile(CalendarEvent<Event> event) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        border: Border.all(color: (event.data?.color ?? Colors.blueGrey), width: 2),
+        border:
+            Border.all(color: (event.data?.color ?? Colors.blueGrey), width: 2),
         borderRadius: BorderRadius.circular(8),
       ),
     );

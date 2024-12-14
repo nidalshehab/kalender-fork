@@ -1,7 +1,7 @@
 import 'package:kalender/kalender.dart';
 import 'package:flutter/material.dart';
 
-import 'package:demo/data/event.dart';
+import './../../data/event.dart';
 
 abstract class Tile extends StatelessWidget {
   final CalendarEvent<Event> event;
@@ -14,7 +14,8 @@ abstract class Tile extends StatelessWidget {
     return event.data?.color ?? Theme.of(context).colorScheme.primaryContainer;
   }
 
-  Color textColor(Color background) => background.computeLuminance() > 0.5 ? Colors.black : Colors.white;
+  Color textColor(Color background) =>
+      background.computeLuminance() > 0.5 ? Colors.black : Colors.white;
 }
 
 class EventTile extends Tile {
@@ -71,7 +72,8 @@ class DropTargetTile extends Tile {
     return Container(
       margin: margin,
       decoration: BoxDecoration(
-        border: Border.all(color: Theme.of(context).colorScheme.onSurfaceVariant),
+        border:
+            Border.all(color: Theme.of(context).colorScheme.onSurfaceVariant),
         borderRadius: BorderRadius.circular(8),
       ),
     );

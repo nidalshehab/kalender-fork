@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:kalender/kalender.dart';
-import 'package:web_demo/enumerations.dart';
-import 'package:web_demo/models/event.dart';
-import 'package:web_demo/pages/multi_calendar.dart';
-import 'package:web_demo/pages/single_calendar.dart';
-import 'package:web_demo/utils.dart';
-import 'package:web_demo/widgets/event_overlay.dart';
+import './enumerations.dart';
+import './models/event.dart';
+import './pages/multi_calendar.dart';
+import './pages/single_calendar.dart';
+import './utils.dart';
+import './widgets/event_overlay.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,8 @@ void main() {
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  static MyAppState? of(BuildContext context) => context.findAncestorStateOfType<MyAppState>();
+  static MyAppState? of(BuildContext context) =>
+      context.findAncestorStateOfType<MyAppState>();
 
   @override
   State<MyApp> createState() => MyAppState();
@@ -35,7 +36,8 @@ class MyAppState extends State<MyApp> {
       ),
       darkTheme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue, brightness: Brightness.dark),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.blue, brightness: Brightness.dark),
       ),
       home: const MyHomePage(title: 'Kalender Demo'),
     );
@@ -43,7 +45,8 @@ class MyAppState extends State<MyApp> {
 
   void toggleTheme() {
     setState(() {
-      themeMode = themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+      themeMode =
+          themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
     });
   }
 }
@@ -66,7 +69,8 @@ class _MyHomePageState extends State<MyHomePage> {
     MultiDayViewConfiguration.workWeek(),
     MultiDayViewConfiguration.custom(numberOfDays: 3),
     MonthViewConfiguration.singleMonth(),
-    MultiDayViewConfiguration.freeScroll(numberOfDays: 3, name: "FreeScroll (WIP)"),
+    MultiDayViewConfiguration.freeScroll(
+        numberOfDays: 3, name: "FreeScroll (WIP)"),
   ];
 
   late final _calendarCallbacks = CalendarCallbacks<Event>(
@@ -84,7 +88,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => eventsController.addEvents(generateEvents(context)));
+    WidgetsBinding.instance.addPostFrameCallback(
+        (_) => eventsController.addEvents(generateEvents(context)));
   }
 
   @override
@@ -97,13 +102,16 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton.filledTonal(
             onPressed: () => MyApp.of(context)!.toggleTheme(),
             icon: Icon(
-              MyApp.of(context)!.themeMode == ThemeMode.dark ? Icons.brightness_2_rounded : Icons.brightness_7_rounded,
+              MyApp.of(context)!.themeMode == ThemeMode.dark
+                  ? Icons.brightness_2_rounded
+                  : Icons.brightness_7_rounded,
             ),
           ),
           DropdownMenu<ViewType>(
             initialSelection: _type,
             dropdownMenuEntries: [
-              ...ViewType.values.map((e) => DropdownMenuEntry(value: e, label: e.label)),
+              ...ViewType.values
+                  .map((e) => DropdownMenuEntry(value: e, label: e.label)),
             ],
             onSelected: (value) {
               if (value == null) return;
@@ -144,7 +152,8 @@ class _MyHomePageState extends State<MyHomePage> {
     final size = MediaQuery.sizeOf(context);
 
     if (position.dy + height > size.height) {
-      position = position.translate(0, size.height - (position.dy + height) - 25);
+      position =
+          position.translate(0, size.height - (position.dy + height) - 25);
     } else if (position.dy < 0) {
       position = position.translate(0, -position.dy);
     }

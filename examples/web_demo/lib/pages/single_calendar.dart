@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kalender/kalender.dart';
-import 'package:web_demo/models/event.dart';
-import 'package:web_demo/widgets/calendar_customize.dart';
-import 'package:web_demo/widgets/calendar_widget.dart';
+import './../models/event.dart';
+import './../widgets/calendar_customize.dart';
+import './../widgets/calendar_widget.dart';
 
 class SingleCalendarView extends StatefulWidget {
   final EventsController<Event> eventsController;
@@ -25,7 +25,8 @@ class _SingleCalendarViewState extends State<SingleCalendarView> {
 
   late ViewConfiguration _viewConfiguration = widget.viewConfigurations[1];
   MultiDayBodyConfiguration _bodyConfiguration = MultiDayBodyConfiguration();
-  MultiDayHeaderConfiguration _headerConfiguration = MultiDayHeaderConfiguration();
+  MultiDayHeaderConfiguration _headerConfiguration =
+      MultiDayHeaderConfiguration();
 
   bool showHeader = true;
 

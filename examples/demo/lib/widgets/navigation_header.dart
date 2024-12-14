@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:demo/data/event.dart';
-import 'package:demo/main.dart';
+import './../data/event.dart';
+import './../main.dart';
 import 'package:flutter/material.dart';
 import 'package:kalender/kalender.dart';
 
@@ -71,11 +71,15 @@ class NavigationHeader extends StatelessWidget {
                   }).toList(),
                   inputDecorationTheme: InputDecorationTheme(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(kMinInteractiveDimension),
+                      borderRadius:
+                          BorderRadius.circular(kMinInteractiveDimension),
                     ),
                     enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(kMinInteractiveDimension),
-                        borderSide: BorderSide(width: 2, color: Theme.of(context).colorScheme.outline)),
+                        borderRadius:
+                            BorderRadius.circular(kMinInteractiveDimension),
+                        borderSide: BorderSide(
+                            width: 2,
+                            color: Theme.of(context).colorScheme.outline)),
                   ),
                   initialSelection: view.value,
                   onSelected: (value) {

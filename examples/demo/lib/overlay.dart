@@ -1,5 +1,5 @@
-import 'package:demo/data/event.dart';
-import 'package:demo/widgets/overlay_card.dart';
+import './data/event.dart';
+import './widgets/overlay_card.dart';
 import 'package:flutter/material.dart';
 import 'package:kalender/kalender.dart';
 
@@ -25,7 +25,8 @@ mixin CalendarOverlay {
     final size = MediaQuery.sizeOf(context);
 
     if (position.dy + height > size.height) {
-      position = position.translate(0, size.height - (position.dy + height) - 25);
+      position =
+          position.translate(0, size.height - (position.dy + height) - 25);
     } else if (position.dy < 0) {
       position = position.translate(0, -position.dy);
     }

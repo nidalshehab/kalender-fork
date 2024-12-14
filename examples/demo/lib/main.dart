@@ -1,10 +1,10 @@
-import 'package:demo/widgets/calendar_widget.dart';
+import './widgets/calendar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:kalender/kalender.dart';
 
-import 'package:demo/data/event.dart';
-import 'package:demo/overlay.dart';
-import 'package:demo/theme.dart';
+import './data/event.dart';
+import './overlay.dart';
+import './theme.dart';
 
 void main() {
   runApp(const App());
@@ -12,16 +12,23 @@ void main() {
 
 class App extends StatefulWidget {
   const App({super.key});
-  static AppState? of(BuildContext context) => context.findAncestorStateOfType<AppState>();
-  static EventsController<Event> eventsController(BuildContext context) => of(context)!.eventsController;
+  static AppState? of(BuildContext context) =>
+      context.findAncestorStateOfType<AppState>();
+  static EventsController<Event> eventsController(BuildContext context) =>
+      of(context)!.eventsController;
 
-  static List<ViewConfiguration> views(BuildContext context) => of(context)!.viewConfigurations;
+  static List<ViewConfiguration> views(BuildContext context) =>
+      of(context)!.viewConfigurations;
 
-  static CalendarController<Event> controller1(BuildContext context) => of(context)!.controller1;
-  static ValueNotifier<ViewConfiguration> view1(BuildContext context) => of(context)!.viewConfiguration1;
+  static CalendarController<Event> controller1(BuildContext context) =>
+      of(context)!.controller1;
+  static ValueNotifier<ViewConfiguration> view1(BuildContext context) =>
+      of(context)!.viewConfiguration1;
 
-  static CalendarController<Event> controller2(BuildContext context) => of(context)!.controller2;
-  static ValueNotifier<ViewConfiguration> view2(BuildContext context) => of(context)!.viewConfiguration2;
+  static CalendarController<Event> controller2(BuildContext context) =>
+      of(context)!.controller2;
+  static ValueNotifier<ViewConfiguration> view2(BuildContext context) =>
+      of(context)!.viewConfiguration2;
 
   @override
   State<App> createState() => AppState();
@@ -36,7 +43,8 @@ class AppState extends State<App> {
     setState(() => _themeMode = mode);
   }
 
-  void toggleTheme() => themeMode = themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+  void toggleTheme() => themeMode =
+      themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
 
   final eventsController = EventsController<Event>();
 
@@ -79,7 +87,8 @@ class _HomePageState extends State<HomePage> with CalendarOverlay {
 
   late final callbacks = CalendarCallbacks<Event>(
     onEventTapped: (event, renderBox) => createOverlay(event, renderBox),
-    onEventCreate: (event) => event.copyWith(data: const Event(title: 'New Event')),
+    onEventCreate: (event) =>
+        event.copyWith(data: const Event(title: 'New Event')),
     onEventCreated: (event) => eventsController.addEvent(event),
   );
 
@@ -100,7 +109,9 @@ class _HomePageState extends State<HomePage> with CalendarOverlay {
           IconButton.filledTonal(
             onPressed: () => App.of(context)!.toggleTheme(),
             icon: Icon(
-              App.of(context)!.themeMode == ThemeMode.dark ? Icons.brightness_2_rounded : Icons.brightness_7_rounded,
+              App.of(context)!.themeMode == ThemeMode.dark
+                  ? Icons.brightness_2_rounded
+                  : Icons.brightness_7_rounded,
             ),
           ),
         ],

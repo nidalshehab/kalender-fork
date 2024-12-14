@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kalender/kalender.dart';
-import 'package:web_demo/models/event.dart';
-import 'package:web_demo/widgets/calendar_widget.dart';
+import './../models/event.dart';
+import './../widgets/calendar_widget.dart';
 
 class MultiCalendarView extends StatefulWidget {
   final EventsController<Event> eventsController;

@@ -2,8 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:kalender/kalender.dart';
-import 'package:web_demo/models/event.dart';
-
+import './models/event.dart';
 
 /// Generate a list of events for the demo.
 List<CalendarEvent<Event>> generateEvents(BuildContext context) {
